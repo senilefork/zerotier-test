@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Install ZeroTier Client
-    run: |
+      run: |
       curl -s https://install.zerotier.com | sudo bash
       
