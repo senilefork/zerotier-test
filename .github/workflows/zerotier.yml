@@ -9,4 +9,23 @@ jobs:
     - name: Install ZeroTier Client
       run: |
         curl -s https://install.zerotier.com | sudo bash
+    - name: Join ZeroTier Network
+      run: |
+        sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORKID }}
+    - name: Authorize ZeroTier Client
+      shell: pwsh
+      run: |
+        $result = (sudo zerotier-cli info) -join ''
+        $result -match '\w{10}'
+        $ClientId = $matches[0]
+        
+        $Uri = 'https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/{0}' -f $ClientId
+        $Token = ConvertTo-SecureString -AsPlainText -Force -String ${{ secrets.ZEROTIER_APIKEY }}
+        $Body = '{ "config": { "authorized": true }}'
+        Invoke-RestMethod -Uri $Uri -Method Post -Authentication Bearer -Token $Token -Body $Body
+  
+
+
+
+
       
