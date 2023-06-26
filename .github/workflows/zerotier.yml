@@ -1,0 +1,12 @@
+on: 
+  workflow_dispatch:
+  push:
+
+jobs:
+  zerotier:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install ZeroTier Client
+    run: |
+      curl -s https://install.zerotier.com | sudo bash
+      
