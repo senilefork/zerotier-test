@@ -13,11 +13,10 @@ jobs:
       run: |
         sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORKID }}
     - name: Authorize ZeroTier Client
-      shell: pwsh
+      shell: bash
       run: |
-        $result = (sudo zerotier-cli info) -join ''
-        $result -match '\w{10}'
-        $ClientId = $matches[0]
+        $result=(sudo zerotier-cli info)
+        $ClientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}]')
         
         $Uri = 'https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/{0}' -f $ClientId
         $Token = ConvertTo-SecureString -AsPlainText -Force -String ${{ secrets.ZEROTIER_APIKEY }}
