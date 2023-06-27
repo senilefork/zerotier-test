@@ -22,6 +22,7 @@ jobs:
         clientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}')
         body='{ "config": { "authorized": true }}'
         uri="https://api.zerotier.com/api/v1/network/$ZEROTIER_NEWORKID/member/$clientId"      
+        echo $uri
         curl -v -X POST -H "Content-Type: application/json" -H "Authorization: token $ZEROTIER_APIKEY" -d '{ "config": { "authorized": true }}' $uri
     - name: Test Connectivity to ZeroTier Router
       run: |
