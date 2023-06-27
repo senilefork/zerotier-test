@@ -12,6 +12,9 @@ jobs:
     - name: Join ZeroTier Network
       run: |
         sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORKID }}
+    - name: Test Connectivity to ZeroTier Router
+      run: |
+        ping -c 10 192.168.194.114
     - name: Authorize ZeroTier Client
       shell: bash
       run: |
