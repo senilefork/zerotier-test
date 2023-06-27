@@ -17,8 +17,9 @@ jobs:
       run: |
         result=$(sudo zerotier-cli info)
         clientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}')
-        
-        uri="https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/${ClientId}"
+        body='{ "config": { "authorized": true }}'
+        uri="https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/${ClientId}"      
+        curl -v -X POST -H "Content-Type: application/json" -H "Authorization: key ${{ secrets.ZEROTIER_APIKEY }}" -d '${body}' $uri
 
 
 
