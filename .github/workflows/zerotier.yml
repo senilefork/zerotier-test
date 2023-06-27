@@ -15,6 +15,7 @@ jobs:
     - name: Authorize ZeroTier Client
       shell: bash
       run: |
+        echo "${{ secrets.ZEROTIER_NETWORKID }} yo yo yo"
         result=$(sudo zerotier-cli info)
         clientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}')
         body='{ "config": { "authorized": true }}'
