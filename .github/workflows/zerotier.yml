@@ -28,6 +28,10 @@ jobs:
     - name: Test Connectivity to ZeroTier Router private IPv4 address
       run: |
         ping -c 10 10.98.10.121
+    - name: Test DNS Resoluition against Route 53 Resolver (this should fail)
+      run: |
+         nslookup ip-10-98-10-121.ec2.internal 10.98.0.2
+         ping ip-10-98-10-121.ec2.internal
 
 
       
