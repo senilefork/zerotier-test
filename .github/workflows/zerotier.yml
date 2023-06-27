@@ -16,6 +16,7 @@ jobs:
       shell: bash
       run: |
         result=$(sudo zerotier-cli info)
+        echo $result
         ClientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}]')
         echo $ClientId
   
