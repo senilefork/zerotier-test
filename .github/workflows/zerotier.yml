@@ -16,10 +16,7 @@ jobs:
       shell: bash
       run: |
         result=$(sudo zerotier-cli info)
-        ClientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}]')
-        
-        Uri="https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/{$ClientId}
-        echo $Uri
+        echo $result
   
 
 
