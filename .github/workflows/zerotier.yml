@@ -15,13 +15,11 @@ jobs:
     - name: Authorize ZeroTier Client
       shell: bash
       run: |
-        $result=(sudo zerotier-cli info)
-        $ClientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}]')
+        result=(sudo zerotier-cli info)
+        ClientId=$(echo $result | grep -oE '[A-Za-z0-9]{10}]')
         
-        $Uri = 'https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/{0}' -f $ClientId
-        $Token = ConvertTo-SecureString -AsPlainText -Force -String ${{ secrets.ZEROTIER_APIKEY }}
-        $Body = '{ "config": { "authorized": true }}'
-        Invoke-RestMethod -Uri $Uri -Method Post -Authentication Bearer -Token $Token -Body $Body
+        Uri="https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/{$ClientId}
+        echo $Uri
   
 
 
