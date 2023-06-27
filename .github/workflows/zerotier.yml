@@ -33,7 +33,7 @@ jobs:
          nslookup ip-10-98-10-121.ec2.internal 10.98.20.208
     - name: Test DNS Resoluition against Route 53 Resolver 2
       run: |
-         nslookup ip-10-98-10-121.ec2.internal 10.98.21.225
+         nslookup ip-10-98-21-209.ec2.internal 10.98.21.225
  
 
 
