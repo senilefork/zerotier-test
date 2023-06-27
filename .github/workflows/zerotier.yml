@@ -20,7 +20,12 @@ jobs:
         body='{ "config": { "authorized": true }}'
         uri="https://api.zerotier.com/api/v1/network/${{ secrets.ZEROTIER_NEWORKID }}/member/${ClientId}"      
         curl -v -X POST -H "Content-Type: application/json" -H "Authorization: token ${{ secrets.ZEROTIER_APIKEY }}" -d '{ "config": { "authorized": true }}' $uri
-
+    - name: Test Connectivity to ZeroTier Router
+      run: |
+        ping -c 10 192.168.194.114
+    - name: Test Connectivity to ZeroTier Router private IPv4 address
+      run: |
+        ping -c 10 10.98.10.121
 
 
       
