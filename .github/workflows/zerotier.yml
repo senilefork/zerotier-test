@@ -9,9 +9,9 @@ jobs:
     - name: Install ZeroTier Client
       run: |
         curl -s https://install.zerotier.com | sudo bash
-   # - name: Join ZeroTier Network
-   #   run: |
-  #      sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORKID }}
+    - name: Join ZeroTier Network
+      run: |
+        sudo zerotier-cli join ${{ secrets.ZEROTIER_NETWORKID }}
     - name: Authorize ZeroTier Client
       shell: bash
       run: |
